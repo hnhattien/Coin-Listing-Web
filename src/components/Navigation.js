@@ -30,15 +30,19 @@ const NavItemList = styled.ul`
     list-style: none;
     padding: 15px;
     margin: 0;
-    li.has-child-list{
+    & > li.has-child-list{
         justify-content: space-between;
+        position: relative;
     }
-    li{
+    & > li{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    & li{
         display: flex;
         width: 100%;
         height: 45px;
-        padding-left: 10px;
-        padding-right: 10px;
+        
         margin-top: 10px;
         border-radius: 10px 10px;
         margin-bottom: 10px;
@@ -78,6 +82,33 @@ const NavItemListWrap =  styled.div`
 
 
 `
+
+const Dropdown = styled.ul`
+    position: absolute;
+    left: 100%;
+    padding: 0 5px;
+    
+    display: flex;
+    flex-direction: column;
+    background: white;
+    box-shadow: 10px 10px 20px rgb(0 0 0 / 7%), -10px -10px 20px rgb(0 0 0 / 7%);
+    top: 0;
+    justify-content: center;
+    border-radius: 10px;
+    li{
+        
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        margin: 2px;
+    }
+    a{
+        text-align: center !important;
+
+        padding: 0 1.7rem;
+    }
+    
+`
 export default function Navigation() {
     return (
         <>
@@ -97,13 +128,23 @@ export default function Navigation() {
                         <span className="text">Projects</span>
                     </span>
                     <IoMdArrowDropright></IoMdArrowDropright>
-                    <ul>
+                    <Dropdown className="dropdown">
                        <li>
                            <NavLink to={'/projects'}>
                                All
                            </NavLink>
                        </li>
-                    </ul>
+                       <li>
+                           <NavLink to={'/projects/tradable'}>
+                               Tradable
+                           </NavLink>
+                       </li>
+                       <li>
+                           <NavLink to={'/projects/comming'}>
+                               On going
+                           </NavLink>
+                       </li>
+                    </Dropdown>
                 </li>
                 <li className="has-child-list">
                     <span>
