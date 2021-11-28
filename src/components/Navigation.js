@@ -33,7 +33,14 @@ const NavItemList = styled.ul`
     & > li.has-child-list{
         justify-content: space-between;
         position: relative;
+        ul{
+            display: none;
+        }
+        &:hover ul{
+            display: flex;
+        }    
     }
+
     & > li{
         padding-left: 10px;
         padding-right: 10px;
@@ -130,7 +137,7 @@ export default function Navigation() {
                     <IoMdArrowDropright></IoMdArrowDropright>
                     <Dropdown className="dropdown">
                        <li>
-                           <NavLink to={'/projects'}>
+                           <NavLink to={'/projects/ecosystem'}>
                                All
                            </NavLink>
                        </li>
