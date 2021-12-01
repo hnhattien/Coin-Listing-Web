@@ -9,10 +9,10 @@ const Div = styled.div`
     box-shadow: 5px 5px 10px rgb(0 0 0 / 7%);
     padding-right: 10px;
     padding-left: 10px;
-    @media ${media.sm}{
+    @media ${media.xxs}{
        
        width: 100%;
-       height: 200px;
+      
 
     }
     
@@ -25,16 +25,16 @@ const Div = styled.div`
 `
 function Navbar(props) {
     return (
-        <Div className="bg-gray-1">
-            <Sider width={"100%"}>
+        <Div id="navbar-layout" className="bg-gray-1">
+            
                 
-                <h4>Casper Projects</h4>
+                <h4 style={{marginBottom: 0}}>Casper Projects</h4>
                 
                 <Navigation>
                     
                 </Navigation>
                 
-            </Sider>
+           
         </Div>
         
     )

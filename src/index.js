@@ -4,33 +4,25 @@ import './index.css';
 import App from './App';
 
 import reportWebVitals from './reportWebVitals';
-import FooterBar from './components/FooterBar';
-import HeaderBar from './components/HeaderBar';
-import Navbar from './components/Navbar';
 import { Layout } from 'antd';
 import { BrowserRouter as Router } from 'react-router-dom';
-const {Content} = Layout;
+import NavBarLayout from './components/NavBarLayout';
+import ContentLayout from './components/ContentLayout';
+import { store } from './app/store';
+import { Provider } from 'react-redux';
+
 ReactDOM.render(
   <React.StrictMode>
-    <>
+    <Provider store={store}>
     <Router>
     <Layout>
-        
-        <Layout>
-          <HeaderBar />
-          <Content>
-            <App/>
-          </Content>
-        </Layout>
-        <Navbar></Navbar>
-        <Layout>
-
-           <FooterBar/>
-
-        </Layout>
+      <NavBarLayout />
+      <ContentLayout>
+        <App/>  
+      </ContentLayout>
     </Layout>
     </Router>
-    </>
+    </Provider>    
   </React.StrictMode>,
   document.getElementById('root')
 );

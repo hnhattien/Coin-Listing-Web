@@ -1,4 +1,5 @@
-const size = {
+export const size = {
+  xxs: "319px",
   xs: '480px',
   sm: '576px',
   md: '768px',
@@ -7,6 +8,7 @@ const size = {
   xxl: '1600px',
 }
 const device = {
+    xxs: `(min-width: ${size.xxs})`,
     xs: `(min-width: ${size.xs})`,
     sm: `(min-width: ${size.sm})`,
     md: `(min-width: ${size.md})`,

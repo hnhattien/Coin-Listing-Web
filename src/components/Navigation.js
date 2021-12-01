@@ -9,6 +9,7 @@ import { IoAppsOutline, IoNewspaper } from 'react-icons/io5';
 import {GiStack} from 'react-icons/gi';
 import { VscArrowSwap } from 'react-icons/vsc';
 import { BsFillCalendarEventFill } from 'react-icons/bs';
+import media from '../responsive/media';
 const SubmitProjectBlock = styled.div`
     &{
         background-color: rgba(0,0,0,.2);
@@ -27,28 +28,56 @@ const SubmitProjectBlock = styled.div`
     }
 `
 const NavItemList = styled.ul`
+@media ${media.xxs}{
+    & li {
+        height: max-content;
+    }
+    & > li.has-child-list{
+        &:hover ul{
+            display: block;
+        }    
+        &:hover{
+            color: rgba(0,0,0,.5) !important;
+            background-color: unset !important;
+        }
+    }
+}
+    @media ${media.lg}{
+        & > li{
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+        & > li.has-child-list{
+            display: flex;
+            ul{
+                display: none;
+            }
+            &:hover ul{
+                display: flex;
+            }    
+        }
+        & li.has-child-list:hover{
+            background-color: #E40B7B !important;
+            
+            color: #ffffff !important;
+        }
+    }
+    
     list-style: none;
     padding: 15px;
     margin: 0;
-    & > li.has-child-list{
-        justify-content: space-between;
-        position: relative;
-        ul{
-            display: none;
-        }
-        &:hover ul{
-            display: flex;
-        }    
-    }
-
+    
     & > li{
         padding-left: 10px;
         padding-right: 10px;
     }
+    & > li{
+        display: block;
+        position: relative;
+    }
     & li{
-        display: flex;
         width: 100%;
-        height: 45px;
         
         margin-top: 10px;
         border-radius: 10px 10px;
@@ -56,12 +85,13 @@ const NavItemList = styled.ul`
         color: rgba(0,0,0,.5) !important;
         align-items: center;
         cursor: pointer;
-        ul{
-            position: absolute;
-        }
         .text{
             margin-left: 10px;
         }
+    }
+    & li > span{
+        padding-top: 1em;
+        padding-bottom: 1em;
     }
     & li a{
         text-decoraction: none !important;
@@ -71,10 +101,12 @@ const NavItemList = styled.ul`
         height: 100%;
         display: flex;
         align-items: center;
+        padding-top: 1em;
+        padding-bottom: 1em;
     }
     & li:hover{
         background-color: #E40B7B;
-        text-decoraction: none !important;
+        
         color: #ffffff !important;
     }
     & li a:hover{
@@ -86,19 +118,38 @@ const NavItemListWrap =  styled.div`
     display: flex;
     justify-content: center;
     flex-flow: column;
-
-
 `
 
 const Dropdown = styled.ul`
-    position: absolute;
-    left: 100%;
+
+@media ${media.xxs}{
+    position: static;
+    display: block;
+    
+    &{
+        border: 1px solid rgba(10,10,10,0.1);
+        margin-top: 1em !important;
+        margin-bottom: 2em !important;
+       
+    }
+    
+}
+    @media ${media.lg}{
+        position: absolute !important;
+        left: 100%;
+        box-shadow: 10px 10px 20px rgb(0 0 0 / 7%), -10px -10px 20px rgb(0 0 0 / 7%);
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        z-index: 1000;
+        
+    }
+    
     padding: 0 5px;
     
     display: flex;
     flex-direction: column;
     background: white;
-    box-shadow: 10px 10px 20px rgb(0 0 0 / 7%), -10px -10px 20px rgb(0 0 0 / 7%);
+    
     top: 0;
     justify-content: center;
     border-radius: 10px;
@@ -111,12 +162,12 @@ const Dropdown = styled.ul`
     }
     a{
         text-align: center !important;
-
         padding: 0 1.7rem;
     }
     
 `
 export default function Navigation() {
+    
     return (
         <>
         <NavItemListWrap>
