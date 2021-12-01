@@ -34,6 +34,7 @@ const Search = styled.div`
     padding-right: 10px;
     padding-left: 6px;
     position: relative;
+    z-index: 1000;
 `
 
 const SearchInputWrap = styled.div`
