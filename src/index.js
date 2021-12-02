@@ -10,6 +10,7 @@ import NavBarLayout from './components/NavBarLayout';
 import ContentLayout from './components/ContentLayout';
 import { store } from './app/store';
 import { Provider } from 'react-redux';
+// // or 'antd/dist/antd.less'
 
 ReactDOM.render(
   <React.StrictMode>

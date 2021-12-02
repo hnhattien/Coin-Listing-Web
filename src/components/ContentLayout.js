@@ -13,7 +13,7 @@ const StyledLayout = styled.div`
     margin-left: 0 !important;
 }
 @media ${media.lg}{
-    margin-left: 290px !important;
+    margin-left: 270px !important;
 }
 `
 export default function ContentLayout(props) {

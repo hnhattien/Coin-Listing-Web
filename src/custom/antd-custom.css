@@ -1442,16 +1442,16 @@
   border-color: #520339;
 }
 .text-gray-1 {
-  color: #ffffff;
+  color: #ffffff!important;
 }
 .text-gray-1 * {
-  color: #ffffff;
+  color: #ffffff!important;
 }
 .bg-gray-1 {
-  background-color: #ffffff;
+  background-color: #ffffff !important;
 }
 .border-gray-1 {
-  border-color: #ffffff;
+  border-color: #ffffff !important;
 }
 .text-gray-2 {
   color: #fafafa;
@@ -1596,5 +1596,28 @@
 }
 .border-gray-13 {
   border-color: #000000;
+}
+.ant-modal-header{
+  text-align: center;
+}
+.ant-btn{
+  margin-left:50px;
+}
+ .ant-layout-header{
+  background-color: #ffffff !important;
+  padding:0px !important;
+}
+.coin-news-24h{
+  padding-top:0px !important; 
+ } 
+ .bg-gray-1{
+    box-shadow:  5px 10px rgb(0 0 0 / 7%) !important;
+ }
+ .ant-layout-header>.bg-gray-1{
+  box-shadow: 0 4px 10px -2px rgb(0 0 0 / 7%) !important;
+
+} 
+.ant-layout{
+  background: #f9e5f8 !important;
 }
 /*# sourceMappingURL=antd-custom.css.map */

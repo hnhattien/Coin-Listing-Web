@@ -12,6 +12,7 @@ import {useSpring, animated} from 'react-spring';
 import {RiArrowDropDownFill, RiArrowDropUpFill} from 'react-icons/ri';
 import API from '../service/API/index';
 import { message } from 'antd';
+import Login from "./Login";
 const Div = styled.div`
     max-height: 100px;
     height: 4rem;
@@ -364,6 +365,7 @@ function HeaderBar(props) {
                         
                     </Completion>
                 </Search>
+                <Login/>
             </Div>        
                   
        
