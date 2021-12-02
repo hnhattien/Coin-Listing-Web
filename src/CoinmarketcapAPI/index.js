@@ -1,6 +1,6 @@
-export const RAPID_COINGECKO_API_URL = 'https://coingecko.p.rapidapi.com';
-export const RAPID_API_HOST = 'coingecko.p.rapidapi.com';
-export const RAPID_API_KEY = 'f8840f5a5bmsh2feec92e173179ap1d3368jsn51de6cfc5dd3'
+export const RAPID_COINGECKO_API_URL = '' //'https://coingecko.p.rapidapi.com';
+export const RAPID_API_HOST = '' // 'coingecko.p.rapidapi.com';
+export const RAPID_API_KEY ='' //'f8840f5a5bmsh2feec92e173179ap1d3368jsn51de6cfc5dd3'
 
 // const rp = require('request-promise');
 // const requestOptions = {
