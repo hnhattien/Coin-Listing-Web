@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
-import { RAPID_API_HOST, RAPID_API_KEY, RAPID_COINGECKO_API_URL } from '../CoinmarketcapAPI/index';
+import { COINGECKO_API_URL } from '../CoinmarketcapAPI/index';
 import API from '../service/API/index';
 import { BsSuitHeartFill } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
 import { RiArrowDropUpFill, RiArrowDropDownFill } from 'react-icons/ri';
 import { IoLogoTwitter, IoEarthSharp, IoLogoGithub } from 'react-icons/io5';
+
+import { Skeleton } from 'antd';
 import { BsTelegram } from 'react-icons/bs';
 const CategoryFilter = styled.div`
    
@@ -136,47 +138,52 @@ const ListingCoins = styled.div`
 export default function HomePage() {
     const [projects, setProjects] = useState(null);
     const [error, setError] = useState(null);
+  
     const getProjects = () => {
+    
         const headers = {};
-        headers['x-rapidapi-host'] = RAPID_API_HOST;
-        headers['x-rapidapi-key'] = RAPID_API_KEY;
         headers['Accept'] = "application/json";
         headers['Content-Type'] = "application/json";
         let params = {};
         params ={
             vs_currency: 'usd', 
-            order: 'volumedesc', 
-            per_page: '100', 
-            page: '2',
+            order: 'volumedesc',
+            category: "metaverse", 
+            per_page: '250', 
+            page: '1',
             price_change_percentage: "1m"
         };
-        const url = `${RAPID_COINGECKO_API_URL}/coins/markets`;
+        const url = `${COINGECKO_API_URL}/coins/markets`;
         
         const requestInfo = {headers, params};
-        API.get(url,requestInfo).then((res)=>{
-            console.log(res);
-            if(res.error){
-                setError(res.error);
-            }
-            else{
-              if(Array.isArray(res)){
-                setProjects(res);
-                
-              }
-            }
-        }).catch(err => {
-            console.log(err);
-        });
+        
+            API.get(url,requestInfo).then((res)=>{
+                console.log(res);
+                if(res.error){
+                    setError(res.error);
+                }
+                else{
+                  if(Array.isArray(res)){
+                    setProjects(res);
+                    console.log(projects); 
+                  }
+                }
+            }).catch(err => {
+                console.log(err);
+            });
+   
         
 }
 
 useEffect(()=>{
     if(!projects){
-        if(window.confirm("Get projects? yes or no (500 API call / 1 month)")){
+      
             getProjects();
-        }
+            
+       
+        
     }
-})
+}, [projects])
     return (
         <div style={{paddingLeft: "50px"}}>
             <h1>All Projects</h1>
@@ -184,7 +191,7 @@ useEffect(()=>{
 
             </CategoryFilter>
             {
-                !projects && "Loading ...."
+                !projects && <Skeleton />
             }
             <ListingCoins>
                 {
@@ -193,7 +200,7 @@ useEffect(()=>{
                         <span className="heart-action"><BsSuitHeartFill /></span>        
                               <div className="card-info">
                               <div className="card-header">
-                        <NavLink to={`/coin/${project.symbol}`}> 
+                        <NavLink to={`/coin/${project.id}`}> 
                         <div className="brand-wrap">
                                     
                                     <img src={project.image}>

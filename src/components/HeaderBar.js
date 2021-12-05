@@ -5,7 +5,7 @@ import { BiSearch } from 'react-icons/bi';
 import { trending } from '../schema/apidata';
 import { NavLink } from 'react-router-dom';
 import Icon from 'react-crypto-icons';
-import { RAPID_API_HOST, RAPID_COINGECKO_API_URL, RAPID_API_KEY } from '../CoinmarketcapAPI/index';
+import { COINGECKO_API_URL } from '../CoinmarketcapAPI/index';
 import _ from 'lodash';
 import {useNavigate} from 'react-router-dom';
 import {useSpring, animated} from 'react-spring';
@@ -61,8 +61,8 @@ const MarketNews24Hours = styled.div`
   overflow: hidden;
   height: 60px;
   max-height: 60px;
-  padding-top: 1em;
   padding-left: 20px;
+  padding: 1em;
   ul{
     transition: transform ease-in-out 500ms;
 list-style: none;
@@ -86,6 +86,9 @@ list-style: none;
         display: flex;
         align-items: center;
       }
+  }
+  .name-wrap{
+     
   }
   li{
     margin-bottom: 30px;
@@ -183,7 +186,6 @@ function HeaderBar(props) {
     }));
     const [isShowTrending, setIsShowTrending] = useState(false);
     const setSizeContentLayout = useCallback(()=>{
-        console.log(document.querySelector("#navbar-layout").clientWidth);
         const marginLeft = document.querySelector("#navbar-layout").clientWidth;
         if(marginLeft){
           setContentLayoutMargin(marginLeft);
@@ -199,23 +201,21 @@ function HeaderBar(props) {
     
     const fetchCoinNews24H = () => {
         const headers = {};
-        headers['x-rapidapi-host'] = RAPID_API_HOST;
-        headers['x-rapidapi-key'] = RAPID_API_KEY;
         headers['Accept'] = "application/json";
         headers['Content-Type'] = "application/json";
         let params = {};
         params ={
             vs_currency: 'usd', 
             order: 'volumedesc', 
-            per_page: '50', 
+            per_page: '100', 
             page: '1',
             price_change_percentage: "24h"
         };
-        const url = `${RAPID_COINGECKO_API_URL}/coins/markets`;
+        const url = `${COINGECKO_API_URL}/coins/markets`;
         
         const requestInfo = {headers, params};
         API.get(url,requestInfo).then((res)=>{
-            console.log(res);
+           
             if(res.error){
                 setError(res.error);
             }
@@ -236,14 +236,14 @@ function HeaderBar(props) {
     const animateCoinNews = () => {
       if(marketNews24HData){
         const length = marketNews24HData.length;
-        console.log(length)
+       
         const id = setInterval(()=>{
             
-                console.log(length);
-                console.log(currentIndex)
+              
+               
                 if(currentIndex < (length - 1)){
                   setCurrentIndex(prevIndex => prevIndex +1);
-                  console.log(currentIndex, "hi")
+                
                 } 
               else{
                 setCurrentIndex(0);
@@ -258,14 +258,14 @@ function HeaderBar(props) {
          }
     useEffect(()=>{
       if(marketNews24HData === null){
-        if(window.confirm("Get market data? Yes or no (500 API call / 1 month)")){
+    
             fetchCoinNews24H();
-          }
+   
       }
       
       if(marketNews24HData){
-        const intervalId = animateCoinNews();
-        return () => clearInterval(intervalId);
+        const animateCoinNewsIntervalId = animateCoinNews();
+        return () => clearInterval(animateCoinNewsIntervalId);
       }
       
         setSizeContentLayout();
@@ -288,13 +288,13 @@ function HeaderBar(props) {
                      
                      {
                         marketNews24HData.map((coinChunk, index) => {
-                            return  <li className={currentIndex === index ? 'active' : ""} key={index}>
+                            return  <li key={index} className={currentIndex === index ? 'active' : ""} key={index}>
                             {
                                 coinChunk.map((coin, indexChunk) => {
-                                return  <NavLink to={`/coin/${coin.symbol}`} style={{display: 'block'}}>
+                                return  <NavLink  key={indexChunk} to={`/coin/${coin.id}`} style={{display: 'block'}}>
                                     <div className="coin" key={indexChunk}>
                                     <div className="image"><img src={coin.image}></img></div>
-                                    <div>
+                                    <div className="name-wrap">
                                         <p className="symbol">{coin.symbol.toUpperCase()}</p>
                                         <span style={{color: coin.price_change_percentage_24h >= 0 ? "#17a2b8" : "#dc3545"}} className="price">
                                             ${Number(coin.current_price)} 
@@ -329,7 +329,7 @@ function HeaderBar(props) {
                         {
                            
                             trendingData.map((trendingItem, index) => {
-                                console.log("Hj");
+                               
                                 if(index === 0){
                                     trendingItem.rank = 1;
                                 }

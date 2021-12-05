@@ -5,15 +5,13 @@ import FooterBar from './FooterBar';
 import HeaderBar from './HeaderBar';
 import styled from 'styled-components';
 import media from '../responsive/media';
-import {Routes, Route} from 'react-router-dom';
-import HomePage from '../pages/HomePage';
 const {Content} = Layout;
 const StyledLayout = styled.div`
 @media ${media.xxs}{
     margin-left: 0 !important;
 }
 @media ${media.lg}{
-    margin-left: 290px !important;
+    margin-left: 270px !important;
 }
 `
 export default function ContentLayout(props) {
@@ -21,15 +19,11 @@ export default function ContentLayout(props) {
     return (
         <StyledLayout>
         <Layout id="content-layout" >
-          <Header>
+          <Header style={{background: "unset", padding: "0", lineHeight: "initial"}}>
             <HeaderBar />
           </Header>
           <Content>
-            <Routes>
-                <Route path={"/"} element={<HomePage></HomePage>}>
-
-                </Route>
-            </Routes>
+           {props.children}
           </Content>
           <FooterBar/>
         </Layout>
