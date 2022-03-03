@@ -34,6 +34,9 @@
     "underscore": "^1.13.1",
     "web-vitals": "^1.1.2"
   },
+  "engines": {
+    "node": "17.0.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "compileless": "concurrently --kill-others \"less-watch-compiler --config less-watcher.config.json\" \"react-scripts start\"",
